@@ -1,7 +1,8 @@
 import os
 from flask import Flask, request, redirect, render_template
-import requests
 from furl import furl
+import awsgi
+import requests
 
 app = Flask(__name__)
 
@@ -41,6 +42,13 @@ def done():
 
 
 def fork_repo(access_token):
+    """
+    Create a fork the configured repository.
+
+    :param access_token: The access token used to authorize this request.
+    :type access_token: str
+    :returns: The URL to the newly create repository.
+    """
     headers = {
         "Authorization": "token {}".format(access_token)
     }
@@ -54,6 +62,15 @@ def fork_repo(access_token):
 
 
 def authorize(callback_code):
+    """
+    Attempt to get an access key from the authorization code passed to the
+    callback method.
+
+    :param callback_code: The temporary code send by the client's browser that
+                          we will use to get our access token.
+    :type callback_code: str
+    :returns: The access token from GitHub.
+    """
     headers = {
         "Accept": "application/json"
     }
@@ -67,6 +84,11 @@ def authorize(callback_code):
                              data=authorization_json)
     response_json = response.json()
     return response_json["access_token"]
+
+
+def lambda_handler(event, context):
+    """This links lambda execution up to our WSGI app."""
+    return awsgi.response(app, event, context)
 
 
 if __name__ == "__main__":
