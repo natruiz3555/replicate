@@ -9,6 +9,10 @@ GitHub, and use it's client_id and client_secret. Follow these instruction if
 you need help:
 https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/.
 
+The "Authorization callback URL" will need to be set to the full callback URL
+for your environment. If you are testing on your local machine using the
+instructions below, this will be `http://localhost:5000/callback`.
+
 ## Demo ##
 
 Try it out here: https://replicate.jitb.tk/
@@ -42,6 +46,8 @@ export GITHUB_REPO=natruiz3555/replicate # Or another repository of your choice.
 
 python replicate/app.py
 ```
+
+Then just point your browser to http://localhost:5000/.
 
 ## Building package for AWS Lambda ##
 
