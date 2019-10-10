@@ -13,10 +13,21 @@ https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/.
 
 Try it out here: https://replicate.jitb.tk/
 
+## Technical specification ##
+See [docs/SPEC.md](docs/SPEC.md)
+
+## Prerequisites ##
+
+These instructions were tested on Debian 9, with Python 3.5 and virtualenv
+installed. If you don't have Python 3.5 or virtualenv installed, run this:
+
+```bash
+sudo apt-get install python3 virtualenv
+```
+
 ## Running ##
 
-You can run this one your local system by running the following. These
-instructions were tested on Debian 9, with Python 3.5 installed:
+You can run this one your local system by running the following. 
 
 ```bash
 git clone https://github.com/natruiz3555/replicate.git

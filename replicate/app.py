@@ -74,14 +74,14 @@ def authorize(callback_code):
     headers = {
         "Accept": "application/json"
     }
-    authorization_json = {
+    authorization_data = {
         "code": callback_code,
         "client_id": CLIENT_ID,
         "client_secret": CLIENT_SECRET
     }
     response = requests.post("https://github.com/login/oauth/access_token",
                              headers=headers,
-                             data=authorization_json)
+                             data=authorization_data)
     response_json = response.json()
     return response_json["access_token"]
 
